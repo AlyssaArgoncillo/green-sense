@@ -13,8 +13,8 @@ document.addEventListener('click', function(e){
 
 // Fade-in for problem rows
 document.addEventListener('DOMContentLoaded', function(){
-	// Observe both problem rows and any revealable who-cards
-	const revealItems = document.querySelectorAll('.problem-row, .reveal');
+	// Observe problem rows, revealable elements, and timeline pieces
+	const revealItems = document.querySelectorAll('.problem-row, .reveal, .timeline-section, .timeline-node');
 	if ('IntersectionObserver' in window && revealItems.length){
 		const io = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
@@ -30,5 +30,12 @@ document.addEventListener('DOMContentLoaded', function(){
 		revealItems.forEach(r => r.classList.add('in-view'));
 	}
 });
+
+// Footer year: set current year if present
+try{
+  const y = new Date().getFullYear();
+  const el = document.getElementById('year');
+  if(el) el.textContent = y;
+}catch(e){/* ignore */}
 
 
